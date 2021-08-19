@@ -6,7 +6,12 @@
 
 <script>
 export default {
-    name: "Register"
+    name: "Register",
+
+    mounted() {
+
+        document.title = "Đăng ký";
+    }
 }
 </script>
 

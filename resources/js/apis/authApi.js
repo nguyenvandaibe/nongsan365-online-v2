@@ -2,12 +2,11 @@ import baseApi from './baseApi'
 
 export default {
     login(formData) {
-        return baseApi.post("/v1/authentication/login", formData);
+        return baseApi.post("/v1/login", formData);
     },
 
     logout(accessToken) {
-        console.log(accessToken);
-        return baseApi.post('/v1/authentication/logout', {accessToken: accessToken}, {
+        return baseApi.post('/v1/logout', {accessToken: accessToken}, {
             headers: {
                 'Authorization': "Bearer " + accessToken,
             }

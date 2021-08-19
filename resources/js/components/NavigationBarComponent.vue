@@ -1,7 +1,8 @@
 <template>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container-fluid">
-            <router-link class="navbar-brand" :to="{ name: 'Home' }" style="font-family: 'Paytone One', sans-serif; color: #149414;">
+            <router-link class="navbar-brand" :to="{ name: 'Home' }"
+                         style="font-family: 'Paytone One', sans-serif; color: #149414;">
                 NÔNG SẢN 365
             </router-link>
 
@@ -26,6 +27,11 @@
                             Trang chủ
                         </router-link>
                     </li>
+                    <li class="nav-item" :to="{ name: 'Home' }">
+                        <router-link class="nav-link" :to="{ name: 'Home' }">
+                            Bán nông sản
+                        </router-link>
+                    </li>
                     <li class="nav-item" v-if="isLoggedIn === false">
                         <router-link class="nav-link" :to="{ name: 'Login' }">
                             Đăng nhập
@@ -44,7 +50,6 @@
                             class="nav-link"
                             :to="{
                                 name: 'MyProfile',
-                                params: { username: user.username },
                             }"
                         >
                             {{ user.name }}
@@ -95,13 +100,16 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex";
+import {mapGetters, mapState} from "vuex";
 
 export default {
     data() {
         return {
             logo: "/storage/static/logo/logo-2.png",
         };
+    },
+
+    mounted() {
     },
 
     methods: {
@@ -111,7 +119,8 @@ export default {
                     accessToken: this.accessToken,
                 })
                 .then((response) => {
-                    this.$router.push({ name: "Home" });
+                    if (this.$route.name !== "Home")
+                        this.$router.push({name: "Home"});
                 })
                 .catch((error) => {
                     console.log(error);
@@ -146,5 +155,9 @@ i {
 
 .dropdown-toggle::after {
     display: none;
+}
+
+li:has("a.router-link-exact-active") {
+    border-bottom: green solid !important;
 }
 </style>

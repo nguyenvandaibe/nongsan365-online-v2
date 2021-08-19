@@ -18,6 +18,22 @@ export default {
 
     components: {
         NavigationBarComponent
+    },
+
+    methods: {
+        updateLayout() {
+            this.$nextTick(() => {
+                let headerBox = document.querySelector('header');
+                let mainBox = document.querySelector('main');
+
+                let mainBoxHeight = window.innerHeight - headerBox.clientHeight;
+                mainBox.style.minHeight = mainBoxHeight + 'px';
+            })
+        }
+    },
+
+    updated() {
+        this.updateLayout()
     }
 }
 </script>

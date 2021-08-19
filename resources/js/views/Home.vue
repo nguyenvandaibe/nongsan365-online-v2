@@ -6,7 +6,12 @@
 
 <script>
 export default {
-    name: "Home"
+    name: "Home",
+
+    mounted() {
+
+        document.title = process.env.MIX_APP_NAME;
+    }
 }
 </script>
 

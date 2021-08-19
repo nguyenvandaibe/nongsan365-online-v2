@@ -80,7 +80,7 @@ class LoginController extends Controller
             return response()->json([
                 'success' => true,
             ]);
-            
+
         }catch (Throwable $th){
 
             Log::error(get_class($this) . ' | logout | ' . $th->getMessage());

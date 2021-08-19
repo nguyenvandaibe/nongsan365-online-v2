@@ -29,6 +29,38 @@ import router from './router'
 import store from "./store";
 import MainApp from './MainApp'
 
+const auth = {
+    loggedIn() {
+        return store.getters["moduleAuth/isLoggedIn"]
+    }
+}
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        // this route requires auth, check if logged in
+        // if not, redirect to login page.
+        if (!auth.loggedIn()) {
+            next({
+                name: "Login",
+                query: { redirect: to.fullPath }
+            })
+        } else {
+            next({query: { redirect: to.fullPath }})
+        }
+    } else if (to.matched.some(record => record.meta.guest)) {
+        if (auth.loggedIn()) {
+            next({
+                name: "Home",
+                query: { redirect: to.fullPath }
+            })
+        } else {
+            next()
+        }
+    } else {
+        next() // make sure to always call next()!
+    }
+})
+
 const app = new Vue({
     el: '#app',
     router,

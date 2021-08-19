@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->singleton(
+            \App\Actions\CategoryActionInteface::class,
+            \App\Actions\CategoryAction::class
+        );
     }
 }

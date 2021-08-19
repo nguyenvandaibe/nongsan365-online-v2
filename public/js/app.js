@@ -2737,6 +2737,48 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 
 
+var auth = {
+  loggedIn: function loggedIn() {
+    return _store__WEBPACK_IMPORTED_MODULE_1__.default.getters["moduleAuth/isLoggedIn"];
+  }
+};
+_router__WEBPACK_IMPORTED_MODULE_0__.default.beforeEach(function (to, from, next) {
+  if (to.matched.some(function (record) {
+    return record.meta.requiresAuth;
+  })) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!auth.loggedIn()) {
+      next({
+        name: "Login",
+        query: {
+          redirect: to.fullPath
+        }
+      });
+    } else {
+      next({
+        query: {
+          redirect: to.fullPath
+        }
+      });
+    }
+  } else if (to.matched.some(function (record) {
+    return record.meta.guest;
+  })) {
+    if (auth.loggedIn()) {
+      next({
+        name: "Home",
+        query: {
+          redirect: to.fullPath
+        }
+      });
+    } else {
+      next();
+    }
+  } else {
+    next(); // make sure to always call next()!
+  }
+});
 var app = new Vue({
   el: '#app',
   router: _router__WEBPACK_IMPORTED_MODULE_0__.default,

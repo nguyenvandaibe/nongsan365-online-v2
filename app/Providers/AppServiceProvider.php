@@ -27,5 +27,15 @@ class AppServiceProvider extends ServiceProvider
             \App\Actions\CategoryActionInteface::class,
             \App\Actions\CategoryAction::class
         );
+
+        $this->app->singleton(
+            \App\Actions\ProductActionInterface::class,
+            \App\Actions\ProductAction::class
+        );
+
+        $this->app->singleton(
+            \App\Shared\Utilities\MediaUploaderInterface::class,
+            \App\Shared\Utilities\MediaUploader::class
+        );
     }
 }

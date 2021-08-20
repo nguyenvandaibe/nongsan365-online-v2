@@ -22,5 +22,8 @@ Route::prefix('v1')->group(function () {
     Route::post('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])
         ->middleware('auth:sanctum');
 
-    Route::get('categories', [\App\Http\Controllers\Api\CategoryController::class, 'index']);
+    Route::get('categories', [\App\Http\Controllers\Api\Product\CategoryController::class, 'index']);
+
+    Route::apiResource('products', \App\Http\Controllers\Api\Product\ProductController::class)
+        ->middleware('auth:sanctum');
 });

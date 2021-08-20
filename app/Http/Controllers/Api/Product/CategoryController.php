@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Product;
 
 use App\Actions\CategoryActionInteface;
 use App\Http\Controllers\Controller;

@@ -32,6 +32,56 @@
 
 <body>
 <div id="app">
+    <nav class="navbar navbar-expand-sm bg-main-color py-1">
+        <div class="container">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav ml-auto">
+                @guest
+                    @if (Route::has('login'))
+                        <li class="text-uppercase pl-3">
+                            <a class="text-white text-decoration-none small"
+                               href="{{ route('login') }}">{{ __('Đăng nhập') }}
+                            </a>
+                        </li>
+                    @endif
+                    @if (Route::has('register'))
+                        <li class="text-uppercase pl-3">
+                            <a class="text-white text-decoration-none small"
+                               href="{{ route('register') }}">{{ __('Đăng ký') }}
+                            </a>
+                        </li>
+                    @endif
+                    @if (Route::has('seller-channel'))
+                        <li class="text-uppercase pl-3">
+                            <a class="text-white text-decoration-none small"
+                               href="{{ route('seller-channel') }}">{{ __('Kênh người bán') }}
+                            </a>
+                        </li>
+                    @endif
+                @else
+                    <li class="text-uppercase pl-3">
+                        <a class="text-white text-decoration-none small" href="{{route('home')}}">
+                            {{ 'TÀI KHOẢN ' . Auth::user()->name }}
+                        </a>
+                    </li>
+
+                    <li class="text-uppercase pl-3">
+                        <a class="text-white text-decoration-none small"
+                           href="{{ route('logout') }}"
+                           onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                        >
+                            <i class="fas fa-power-off"></i>
+                            {{ __('Đăng xuất') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                @endguest
+            </ul>
+        </div>
+    </nav>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand text-italic main-color" href="{{ url('/') }}"
@@ -52,49 +102,7 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
-                    @guest
-                        @if (Route::has('login'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Đăng nhập') }}</a>
-                            </li>
-                        @endif
 
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Đăng ký') }}</a>
-                            </li>
-                        @endif
-                    @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item" href="{{route('home')}}">
-                                    <i class="far fa-user"></i>
-                                    {{__('Trang cá nhân')}}
-                                </a>
-
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    <span class="text-danger">
-                                        <i class="fas fa-power-off"></i>
-                                    </span>
-                                    {{ __('Đăng xuất') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    @endguest
                 </ul>
             </div>
         </div>

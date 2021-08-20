@@ -1,0 +1,7 @@
+.nav-item i {
+    width: 20px;
+}
+
+.main-color {
+    color: var(--main-color) !important;
+}

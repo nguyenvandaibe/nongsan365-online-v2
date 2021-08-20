@@ -25,4 +25,12 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * Hiển thị trang người bán
+     */
+    public function seller()
+    {
+        return view ('seller.home');
+    }
 }

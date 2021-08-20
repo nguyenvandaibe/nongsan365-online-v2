@@ -34,7 +34,15 @@
 <div id="app">
     <nav class="navbar navbar-expand-sm bg-main-color py-1">
         <div class="container">
-            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav mr-auto">
+                @if (Route::has('seller'))
+                    <li class="text-uppercase pr-3">
+                        <a class="text-white text-decoration-none small"
+                           href="{{ route('seller') }}">{{ __('Kênh người bán') }}
+                        </a>
+                    </li>
+                @endif
+            </ul>
             <ul class="navbar-nav ml-auto">
                 @guest
                     @if (Route::has('login'))
@@ -48,13 +56,6 @@
                         <li class="text-uppercase pl-3">
                             <a class="text-white text-decoration-none small"
                                href="{{ route('register') }}">{{ __('Đăng ký') }}
-                            </a>
-                        </li>
-                    @endif
-                    @if (Route::has('seller-channel'))
-                        <li class="text-uppercase pl-3">
-                            <a class="text-white text-decoration-none small"
-                               href="{{ route('seller-channel') }}">{{ __('Kênh người bán') }}
                             </a>
                         </li>
                     @endif
@@ -102,7 +103,9 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-
+                    <a href="#" class="btn bg-main-color text-white rounded-pill text-uppercase" role="button">
+                        {{__('ĐĂNG BÁN')}}
+                    </a>
                 </ul>
             </div>
         </div>

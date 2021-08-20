@@ -40,21 +40,11 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request): JsonResponse
     {
-        try {
-            $this->productAction->store($request->toDTO());
+        $this->productAction->store($request->toDTO());
 
-            return response()->json([
-                'success' => true,
-            ]);
-        } catch (Throwable $th) {
-
-            Log::error(get_class($this) . '|store|' . $th->getMessage());
-
-            return response()->json([
-                'success' => false,
-                'error' => __('errors.system')
-            ]);
-        }
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     /**

@@ -56,4 +56,9 @@ class ProductController extends Controller
             return back()->withInput();
         }
     }
+
+    public function show(Product $product)
+    {
+        return view('seller.product.show', compact('product'));
+    }
 }

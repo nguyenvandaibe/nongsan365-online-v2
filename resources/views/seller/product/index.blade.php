@@ -1,8 +1,8 @@
 @extends('layouts.seller')
 
 @section('content')
-    <div class="my-3 d-flex justify-content-between">
-        <span class="h3">Danh sách nông sản</span>
+    <div class="mt-3 d-flex justify-content-between">
+        <span class="h4">Danh sách nông sản</span>
 
         <a href="{{route('seller.products.create')}}" role="button" class="btn bg-main-color text-white">
             <i class="fas fa-plus"></i>
@@ -34,7 +34,7 @@
                 <td>{{$product->plant_date}}</td>
                 <td>{{$product->harvest_date}}</td>
                 <td class="d-flex justify-content-around">
-                    <a href="#" class="text-dark" title="Xem">
+                    <a href="{{route('seller.products.show', ['product' => $product->id])}}" class="text-dark" title="Xem">
                         <i class="fal fa-eye"></i>
                     </a>
 

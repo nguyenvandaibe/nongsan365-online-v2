@@ -1,8 +1,8 @@
 @extends('layouts.seller')
 
 @section('content')
-    <div class="my-3 d-flex justify-content-between">
-        <span class="h3">Thêm nông sản</span>
+    <div class="mt-3 d-flex justify-content-between">
+        <span class="h4">Thêm nông sản</span>
     </div>
 
     <hr>

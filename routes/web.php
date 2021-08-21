@@ -29,4 +29,7 @@ Route::group([
     Route::get('', [\App\Http\Controllers\HomeController::class, 'seller'])->name('home');
 
     Route::resource('products', \App\Http\Controllers\Web\ProductController::class);
+
+    Route::get('products/{product}/growth', [\App\Http\Controllers\Web\ProductController::class, 'loadGrowth'])
+        ->name('products.growth');
 });

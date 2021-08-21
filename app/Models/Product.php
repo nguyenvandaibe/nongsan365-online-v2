@@ -23,4 +23,9 @@ class Product extends Model
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
+
+    public function growth()
+    {
+        return $this->hasMany(Growth::class);
+    }
 }

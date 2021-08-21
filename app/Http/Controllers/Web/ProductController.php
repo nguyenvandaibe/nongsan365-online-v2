@@ -62,4 +62,11 @@ class ProductController extends Controller
     {
         return view('seller.product.show', compact('product'));
     }
+
+    public function loadGrowth(Product $product)
+    {
+        $product->load('growth');
+
+        return view('seller.product.growth', compact('product'));
+    }
 }

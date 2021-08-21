@@ -57,13 +57,23 @@
                                        min="0">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-8 col-form-label">Cân nặng trung bình (đơn vị: kg)</label>
-                            <div class="col-sm-4">
-                                <input type="number" id="productWeight" class="form-control form-control-sm" value="0"
-                                       min="0">
+                        @if($product->type == \App\Shared\Consts\ProductConst::TYPE_ANIMAL)
+                            <div class="form-group row">
+                                <label for="" class="col-sm-8 col-form-label">Cân nặng trung bình (đơn vị: kg)</label>
+                                <div class="col-sm-4">
+                                    <input type="number" id="productWeight" class="form-control form-control-sm"
+                                           value="0"
+                                           min="0">
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="form-group row">
+                                <label for="" class="col-sm-4 col-form-label">Thời kỳ phát triển</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="productStep" class="form-control form-control-sm" placeholder="Gieo hạt, ra hoa,...">
+                                </div>
+                            </div>
+                        @endif
                         <div class="form-group">
                             <label for="">Hinh ảnh</label>
                             <input type="file" id="productPhotos" class="form-control form-control-sm input-photos"

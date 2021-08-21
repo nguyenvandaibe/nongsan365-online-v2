@@ -24,8 +24,9 @@ class StoreProductGrowthRequest extends FormRequest
     public function rules()
     {
         return [
-            'weight' => 'nullable|gt:0',
-            'height' => 'nullable|gt:0',
+            'weight' => 'nullable|min:0',
+            'height' => 'nullable|min:0',
+            'step' => 'nullable|string',
             'photos' => 'nullable'
         ];
     }

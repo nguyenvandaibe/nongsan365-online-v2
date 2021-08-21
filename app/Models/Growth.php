@@ -15,6 +15,7 @@ class Growth extends Model
     protected $fillable = [
         'height',
         'weight',
+        'step',
         'growth_level',
         'product_type',
         'product_id',

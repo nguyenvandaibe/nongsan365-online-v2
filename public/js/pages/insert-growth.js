@@ -10,8 +10,9 @@ function submitForm() {
 
     let formData = new FormData();
 
-    formData.append('weight', $('#productWeight').val());
+    formData.append('weight', $('#productWeight').val() ?? 0);
     formData.append('height', $('#productHeight').val());
+    formData.append('step', $('#productStep').val() ?? '');
 
     $.each($('#productPhotos')[0].files, function (i, file) {
         formData.append('photos[]', file);

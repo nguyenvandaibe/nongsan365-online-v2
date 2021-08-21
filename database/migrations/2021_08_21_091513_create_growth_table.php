@@ -17,6 +17,7 @@ class CreateGrowthTable extends Migration
             $table->id();
             $table->unsignedSmallInteger('height')->nullable();
             $table->unsignedSmallInteger('weight')->nullable();
+            $table->string('step')->nullable();
             $table->unsignedTinyInteger('product_type');
             $table->unsignedInteger('product_id');
             $table->timestamps();

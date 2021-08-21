@@ -3,7 +3,7 @@
         href="{{route('seller.products.show', ['product' => $product->id])}}"
         class="nav-link py-0 text-dark"
     >
-        Thông tin sản phẩm
+        Thông tin nông sản
     </a>
 
     <a

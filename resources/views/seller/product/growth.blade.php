@@ -41,21 +41,25 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="insertGrowthForm" enctype="multipart/form-data">
+                    <form
+                        id="insertGrowthForm"
+                        enctype="multipart/form-data"
+                        data-action="{{route('api.v1.seller.products.growth', ['product' => $product->id])}}"
+                    >
                         <div class="form-group">
                             <label for="">Tên nông sản: {{$product->name}}</label>
                         </div>
                         <div class="form-group">
                             <label for="">Chiều cao (đơn vị: cm)</label>
-                            <input type="number" class="form-control form-control-sm" value="0" min="0">
+                            <input type="number" id="productHeight" class="form-control form-control-sm" value="0" min="0">
                         </div>
                         <div class="form-group">
                             <label for="">Cân nặng trung bình (đơn vị: kg)</label>
-                            <input type="number" class="form-control form-control-sm" value="0" min="0">
+                            <input type="number" id="productWeight" class="form-control form-control-sm" value="0" min="0">
                         </div>
                         <div class="form-group">
                             <label for="">Hinh ảnh</label>
-                            <input id="productGrowthPhotos" type="file" class="form-control form-control-sm" multiple>
+                            <input type="file" id="productPhotos" class="form-control form-control-sm input-photos" multiple>
                             <div class="d-flex gallery"></div>
                         </div>
                     </form>
@@ -65,7 +69,11 @@
                         <i class="fas fa-times"></i>
                         Đóng
                     </button>
-                    <button type="button" class="btn bg-main-color text-white">
+                    <button
+                        id="btnSubmit"
+                        type="button"
+
+                        class="btn bg-main-color text-white">
                         <i class="far fa-save"></i>
                         Lưu
                     </button>
@@ -76,5 +84,6 @@
 @endsection
 
 @push('seller-scripts')
+    <script type="application/javascript" src="{{asset('js/shared/preview-photos.js')}}" defer></script>
     <script type="application/javascript" src="{{asset('js/pages/insert-growth.js')}}" defer></script>
 @endpush

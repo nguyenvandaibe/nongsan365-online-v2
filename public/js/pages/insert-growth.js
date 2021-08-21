@@ -1,29 +1,35 @@
 $(document).ready(function () {
 
-    $('#productGrowthPhotos').on('change', function () {
+    $('#btnSubmit').on('click', function () {
 
-        previewPhotos(this, 'div.gallery');
+        submitForm();
     })
 });
 
-function previewPhotos(input, photoPlaceholder) {
+function submitForm() {
 
-    if (input.files) {
+    let formData = new FormData();
 
-        var filesAmount = input.files.length;
+    formData.append('weight', $('#productWeight').val());
+    formData.append('height', $('#productHeight').val());
+    formData.append('photos', $('#productPhotos').val());
 
-        for (i = 0; i < filesAmount; i++) {
-            var reader = new FileReader();
+    let url = $('#insertGrowthForm').data('action');
 
-            reader.onload = function(event) {
-                $($.parseHTML('<img>'))
-                    .attr('src', event.target.result).appendTo(photoPlaceholder)
-                    .attr('width', '120px')
-                    .attr('height', '120px')
-                    .attr('class', 'py-3 pr-3');
-            }
+    console.log(url);
 
-            reader.readAsDataURL(input.files[i]);
-        }
-    }
+    $.ajax({
+        url: url,
+        method: "POST",
+        data: formData,
+        processData: false,
+
+    }).done(function (data, textStatus, jqXHR) {
+
+        console.log(data);
+
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+
+        console.log(jqXHR, textStatus, errorThrown);
+    });
 }

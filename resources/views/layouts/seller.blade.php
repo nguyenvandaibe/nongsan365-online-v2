@@ -13,7 +13,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/layout.js') }}" defer></script>
-    @stack('seller-scripts')
+    <script src="{{ asset('js/libs/jquery.toaster.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -83,9 +83,9 @@
         </nav>
     </header>
 
-    <main class="container-fluid d-flex row mx-0">
+    <main class="d-flex row mx-0">
         <nav id="sellerSideBar" class="nav flex-column col-sm-2 border-right">
-            <a class="nav-link text-dark" href="#">
+            <a class="nav-link text-dark" href="{{route('seller.home')}}">
                 <i class="far fa-cubes"></i>
                 {{__('Trang chủ')}}
             </a>
@@ -101,7 +101,7 @@
             </a>
             <ul class=" nav" id="productSubMenu">
                 <li class="nav-item w-100 pl-4">
-                    <a href="#" class="nav-link text-dark">
+                    <a href="{{route('seller.products.index')}}" class="nav-link text-dark">
                         {{ __('Nông sản') }}
                     </a>
                     <a href="#" class="nav-link text-dark">
@@ -115,5 +115,8 @@
         </div>
     </main>
 </div>
+
+@stack('seller-scripts')
+
 </body>
 </html>

@@ -21,4 +21,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/ban-hang', [\App\Http\Controllers\HomeController::class, 'seller'])->name('seller');
+Route::group([
+    'as' => 'seller.',
+    'prefix' => 'seller',
+], function () {
+
+    Route::get('', [\App\Http\Controllers\HomeController::class, 'seller'])->name('home');
+
+    Route::resource('products', \App\Http\Controllers\Web\ProductController::class);
+});

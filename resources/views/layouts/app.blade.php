@@ -35,10 +35,10 @@
     <nav class="navbar navbar-expand-sm bg-main-color py-1">
         <div class="container">
             <ul class="navbar-nav mr-auto">
-                @if (Route::has('seller'))
+                @if (Route::has('seller.home'))
                     <li class="text-uppercase pr-3">
                         <a class="text-white text-decoration-none small"
-                           href="{{ route('seller') }}">{{ __('Kênh người bán') }}
+                           href="{{ route('seller.home') }}">{{ __('Kênh người bán') }}
                         </a>
                     </li>
                 @endif

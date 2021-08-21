@@ -11,7 +11,10 @@
 
     <div>
         @if($product->growth->count() > 0)
-            {{$product->growth->count()}}
+
+            <input type="hidden" value="{{$product}}" id="productData">
+
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
         @else
             <div class="alert alert-info" role="alert">
                 Không có thông tin
@@ -70,7 +73,8 @@
                             <div class="form-group row">
                                 <label for="" class="col-sm-4 col-form-label">Thời kỳ phát triển</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="productStep" class="form-control form-control-sm" placeholder="Gieo hạt, ra hoa,...">
+                                    <input type="text" id="productStep" class="form-control form-control-sm"
+                                           placeholder="Gieo hạt, ra hoa,...">
                                 </div>
                             </div>
                         @endif
@@ -101,6 +105,71 @@
 @endsection
 
 @push('seller-scripts')
+    <script type="application/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
     <script type="application/javascript" src="{{asset('js/shared/preview-photos.js')}}" defer></script>
     <script type="application/javascript" src="{{asset('js/pages/insert-growth.js')}}" defer></script>
+
+    <script type="application/javascript">
+
+        let productData = JSON.parse($('#productData').val());
+
+        var points = new Array();
+
+        $.each(productData.growth, function (index, item) {
+
+            points.push({x: new Date(item.created_at), y: item.height});
+        });
+
+        window.onload = function () {
+
+            var options = {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Chiêu cao của cây trồng"
+                },
+                axisX: {
+                    valueFormatString: "DD MMM"
+                },
+                axisY: {
+                    title: "Chiều cao",
+                    suffix: "cm",
+                    minimum: 0
+                },
+                toolTip: {
+                    shared: true
+                },
+                legend: {
+                    cursor: "pointer",
+                    verticalAlign: "bottom",
+                    horizontalAlign: "left",
+                    dockInsidePlotArea: true,
+                    itemclick: toogleDataSeries
+                },
+                data: [
+                    {
+                        type: "line",
+                        showInLegend: true,
+                        name: "Chiều cao",
+                        markerType: "square",
+                        xValueFormatString: "DD MMM, YYYY",
+                        color: "#F08080",
+                        yValueFormatString: "#cm",
+                        dataPoints: points
+                    }
+                ]
+            };
+            $("#chartContainer").CanvasJSChart(options);
+
+            function toogleDataSeries(e) {
+                if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                } else {
+                    e.dataSeries.visible = true;
+                }
+                e.chart.render();
+            }
+
+        }
+    </script>
 @endpush

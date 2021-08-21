@@ -37,6 +37,8 @@ function submitForm() {
             clearForm();
 
             toaster.toast('success', 'Dữ liệu đã được cập nhật');
+
+            location.reload();
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
 

@@ -17,9 +17,10 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('kind');
-            $table->date('plant_date');
-            $table->date('harvest_date');
+            $table->date('start_date');
+            $table->date('finish_date');
             $table->string('crop');
+            $table->unsignedTinyInteger('type');
             $table->unsignedInteger('owner_id');
             $table->timestamps();
             $table->softDeletes();

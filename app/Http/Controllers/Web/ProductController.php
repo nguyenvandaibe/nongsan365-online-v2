@@ -36,10 +36,11 @@ class ProductController extends Controller
     {
         try {
             $product = Auth::user()->products()->create([
+                'type' => $request->product_type,
                 'name' => $request->product_name,
                 'kind'=>$request->product_kind,
-                'plant_date'=>$request->product_plant_date,
-                'harvest_date'=>$request->product_harvest_date,
+                'start_date'=>$request->product_start_date,
+                'finish_date'=>$request->product_finish_date,
                 'crop'=>$request->product_crop,
             ]);
 

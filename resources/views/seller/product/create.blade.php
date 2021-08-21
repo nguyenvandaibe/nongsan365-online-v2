@@ -13,6 +13,28 @@
             @csrf
 
             <div class="form-group row">
+                <label for="productType" class="col-md-2 col-form-label">{{ __('Loại nông sản') }}</label>
+
+                <div class="col-md-10">
+                    <select
+                        name="product_type"
+                        id="productType"
+                        class="form-control @error('product_type') is-invalid @enderror"
+                        value="{{old('product_type')}}"
+                    >
+                        <option value="0">Cây trồng</option>
+                        <option value="0">Vật nuôi</option>
+                    </select>
+
+                    @error('product_type')
+                    <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label for="productName" class="col-md-2 col-form-label">{{ __('Tên nông sản') }}</label>
 
                 <div class="col-md-10">
@@ -53,36 +75,38 @@
             </div>
 
             <div class="form-group row">
-                <label for="productPlantDate" class="col-md-2 col-form-label">{{ __('Ngày trồng') }}</label>
+                <label for="" class="col-md-2 col-form-label">{{ __('Thời gian nuôi trồng') }}</label>
+
+                <label for="productStartDate" class="col-md-1 col-form-label text-sm-right">{{ __('Từ') }}</label>
 
                 <div class="col-md-4">
                     <input
-                        id="productPlantDate"
+                        id="productStartDate"
                         type="date"
-                        class="form-control @error('product_plant_date') is-invalid @enderror"
-                        name="product_plant_date"
-                        value="{{old('product_plant_date')}}"
+                        class="form-control @error('product_start_date') is-invalid @enderror"
+                        name="product_start_date"
+                        value="{{old('product_start_date')}}"
                     >
 
-                    @error('product_plant_date')
+                    @error('product_start_date')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
 
-                <label for="productHarvestDate" class="col-md-2 col-form-label">{{ __('Ngày thu hoạch') }}</label>
+                <label for="productFinishDate" class="col-md-1 col-form-label text-sm-right">{{ __('Đến') }}</label>
 
                 <div class="col-md-4">
                     <input
-                        id="productHarvestDate"
+                        id="productFinishDate"
                         type="date"
-                        class="form-control @error('product_harvest_date') is-invalid @enderror"
-                        name="product_harvest_date"
-                        value="{{old('product_harvest_date')}}"
+                        class="form-control @error('product_finish_date') is-invalid @enderror"
+                        name="product_finish_date"
+                        value="{{old('product_finish_date')}}"
                     >
 
-                    @error('product_harvest_date')
+                    @error('product_finish_date')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

@@ -31,8 +31,8 @@
                 <td>{{$product->name}}</td>
                 <td>{{$product->kind}}</td>
                 <td>{{$product->crop}}</td>
-                <td>{{$product->plant_date}}</td>
-                <td>{{$product->harvest_date}}</td>
+                <td>{{$product->start_date}}</td>
+                <td>{{$product->finish_date}}</td>
                 <td class="d-flex justify-content-around">
                     <a href="{{route('seller.products.show', ['product' => $product->id])}}" class="text-dark" title="Xem">
                         <i class="fal fa-eye"></i>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Shared\Consts\ProductConst;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateOrUpdateProductRequest extends FormRequest
@@ -24,10 +25,12 @@ class CreateOrUpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
+            'product_type' => 'required|integer|in:' . ProductConst::TYPE_PLANT . ',' . ProductConst::TYPE_ANIMAL,
             'product_name' => 'required|string|max:255',
             'product_kind' => 'required|string|max:255',
-            'product_plant_date' => 'required|date',
-            'product_harvest_date' => 'required|date|after:product_plant_date',
+            'product_start_date' => 'required|date',
+            'product_finish_date' => 'required|date|after:product_start_date',
+            'product_crop' => 'nullable|string|max:255',
         ];
     }
 }

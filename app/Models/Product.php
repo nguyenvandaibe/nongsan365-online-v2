@@ -12,9 +12,10 @@ class Product extends Model
     protected $fillable = [
         'name',
         'kind',
-        'plant_date',
-        'harvest_date',
+        'start_date',
+        'finish_date',
         'crop',
+        'type',
         'owner_id',
     ];
 

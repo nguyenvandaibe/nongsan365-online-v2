@@ -6,8 +6,6 @@ $(document).ready(function () {
 
     let titles = {success: 'Thành công', info: 'Thông báo', warning: 'Chú ý', danger: 'Lỗi'};
 
-    console.log(messageType);
-
     if (messageValue) {
         $.toaster({
             priority : messageType,

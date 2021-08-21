@@ -22,7 +22,9 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        return view('seller.product.index');
+        $products = $this->product->where($request->all())->get();
+
+        return view('seller.product.index', compact('products'));
     }
 
     public function create()

@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $('#btnSubmit').on('click', function () {
+    $('#btnSubmit').on('click', function (e) {
 
         submitForm();
     })
@@ -12,24 +12,49 @@ function submitForm() {
 
     formData.append('weight', $('#productWeight').val());
     formData.append('height', $('#productHeight').val());
-    formData.append('photos', $('#productPhotos').val());
+
+    $.each($('#productPhotos')[0].files, function (i, file) {
+        formData.append('photos[]', file);
+    });
 
     let url = $('#insertGrowthForm').data('action');
 
-    console.log(url);
+    let toaster = new JqueryBootstrapToaster();
 
     $.ajax({
         url: url,
         method: "POST",
         data: formData,
         processData: false,
+        contentType: false
+    })
+        .done(function (data, textStatus, jqXHR) {
 
-    }).done(function (data, textStatus, jqXHR) {
+        })
+        .then(function (data) {
 
-        console.log(data);
+            clearForm();
 
-    }).fail(function (jqXHR, textStatus, errorThrown) {
+            toaster.toast('success', 'Dữ liệu đã được cập nhật');
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
 
-        console.log(jqXHR, textStatus, errorThrown);
-    });
+            if (jqXHR.status === 422) {
+
+                toaster.toast('warning', jqXHR.responseJSON.message);
+
+            } else {
+
+                toaster.toast('danger', 'Hệ thống đã xảy ra lỗi');
+            }
+        });
+}
+
+function clearForm() {
+
+    $('#insertGrowthForm').trigger("reset");
+
+    $('#insertGrowthModal').modal('hide');
+
+    $('.gallery').empty();
 }

@@ -15,8 +15,8 @@ class CreateGrowthTable extends Migration
     {
         Schema::create('growth', function (Blueprint $table) {
             $table->id();
-            $table->unsignedSmallInteger('height');
-            $table->unsignedSmallInteger('weight');
+            $table->unsignedSmallInteger('height')->nullable();
+            $table->unsignedSmallInteger('weight')->nullable();
             $table->unsignedTinyInteger('product_type');
             $table->unsignedInteger('product_id');
             $table->timestamps();

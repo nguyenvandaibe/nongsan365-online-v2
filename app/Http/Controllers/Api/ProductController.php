@@ -19,11 +19,11 @@ class ProductController extends Controller
 
     public function storeGrowth(Product $product, StoreProductGrowthRequest $request)
     {
-        dd($request->all());
         try {
-            $product = $this->product->findOrFails($request->product_id);
 
-            $product->growth()->createOrUpdate($request->all());
+            $request->merge(['product_type' => $product->type]);
+
+            $product->growth()->create($request->all());
 
             return true;
 

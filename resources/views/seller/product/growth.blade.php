@@ -29,8 +29,9 @@
         </button>
     </div>
 
-    <div class="modal fade" id="insertGrowthModal" data-backdrop="static" aria-labelledby="insertGrowthModalLabel" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal fade" id="insertGrowthModal" data-backdrop="static" aria-labelledby="insertGrowthModalLabel"
+         tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-main-color text-white">
                     <h5 class="modal-title" id="insertGrowthModalLabel">
@@ -44,22 +45,29 @@
                     <form
                         id="insertGrowthForm"
                         enctype="multipart/form-data"
-                        data-action="{{route('api.v1.seller.products.growth', ['product' => $product->id])}}"
+                        data-action="{{route('api.v1.seller.products.growth.store', ['product' => $product->id])}}"
                     >
                         <div class="form-group">
                             <label for="">Tên nông sản: {{$product->name}}</label>
                         </div>
-                        <div class="form-group">
-                            <label for="">Chiều cao (đơn vị: cm)</label>
-                            <input type="number" id="productHeight" class="form-control form-control-sm" value="0" min="0">
+                        <div class="form-group row">
+                            <label for="" class="col-sm-8 col-form-label">Chiều cao (đơn vị: cm)</label>
+                            <div class="col-sm-4">
+                                <input type="number" id="productHeight" class="form-control form-control-sm" value="0"
+                                       min="0">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="">Cân nặng trung bình (đơn vị: kg)</label>
-                            <input type="number" id="productWeight" class="form-control form-control-sm" value="0" min="0">
+                        <div class="form-group row">
+                            <label for="" class="col-sm-8 col-form-label">Cân nặng trung bình (đơn vị: kg)</label>
+                            <div class="col-sm-4">
+                                <input type="number" id="productWeight" class="form-control form-control-sm" value="0"
+                                       min="0">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="">Hinh ảnh</label>
-                            <input type="file" id="productPhotos" class="form-control form-control-sm input-photos" multiple>
+                            <input type="file" id="productPhotos" class="form-control form-control-sm input-photos"
+                                   multiple>
                             <div class="d-flex gallery"></div>
                         </div>
                     </form>
@@ -72,7 +80,6 @@
                     <button
                         id="btnSubmit"
                         type="button"
-
                         class="btn bg-main-color text-white">
                         <i class="far fa-save"></i>
                         Lưu

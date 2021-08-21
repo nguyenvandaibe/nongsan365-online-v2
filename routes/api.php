@@ -19,6 +19,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.v1.'], function () {
     Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
 
         Route::post('products/{product}/growth', [\App\Http\Controllers\Api\ProductController::class, 'storeGrowth'])
-            ->name('products.growth');
+            ->name('products.growth.store');
     });
 });

@@ -13,7 +13,7 @@ class StoreProductGrowthRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreProductGrowthRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'weight' => 'nullable|gt:0',
+            'height' => 'nullable|gt:0',
+            'photos' => 'nullable'
         ];
     }
 }
